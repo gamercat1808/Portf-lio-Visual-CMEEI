@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins";
+}
+
+body {
+    background-color: #1d2b3a;
+    display: flex; /* Adicionado para centralizar o conteúdo principal */
+    flex-direction: column; /* Organiza os itens do body em coluna */
+    align-items: center; /* Centraliza os itens horizontalmente */
+    min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
+    gap: 20px; /* Espaçamento entre os elementos do body */
+    padding-bottom: 50px; /* Para garantir que o rodapé não cubra as imagens */
+}
+
+#titulo {
+    font-family: "Poppins";
+    color: white;
+    margin-top: 30px; /* Adicionado um espaçamento superior */
+}
+
+#logo {
+    width: 75px;
+    height: 75px;
+    /* Remover positioning absoluto aqui se #images for para o topo direito */
+}
+
+#images {
+    position: absolute; /* Mantém para posicionar a logo no canto superior direito */
+    top: 0;
+    right: 0;
+    width: auto; /* A largura será controlada pela imagem dentro dela */
+    height: auto; /* A altura será controlada pela imagem dentro dela */
+    padding: 10px; /* Adiciona um pequeno padding para a logo não ficar colada na borda */
+}
+
+p, h2 {
+    color: white;
+    text-align: center; /* Centraliza o texto do h2 e p */
+}
+
+.flashed {
+    color: white;
+    list-style: none; /* Remove os marcadores da lista */
+    padding: 10px;
+    background-color: rgba(0, 223, 197, 0.2); /* Cor de fundo para as mensagens */
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#nomeImagem {
+    color: white;
+    text-align: center;
+    display: block; /* Garante que o strong ocupe sua própria linha */
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* Esconde o texto "Nenhum ficheiro selecionado" */
+input[type="file"] {
+    color: transparent;
+}
+
+/* Mantém o botão padrão visível */
+input[type="file"]::file-selector-button, button, label {
+    transition: 0.5s;
+    background-color: #1d2b3a;
+    color: rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 5px;
+    outline: none;
+    padding: 10px 15px; /* Ajuste o padding para os botões e labels */
+    cursor: pointer; /* Indica que é clicável */
+}
+
+/* Remover borda azul quando selecionado (opcional) */
+input[type="file"]:focus {
+    outline: none;
+}
+
+#upload {
+    /* Remover min-height e posicionamento absoluto para que ele siga o fluxo do body */
+    /* top: 25%; foi removido */
+    display: flex;
+    justify-content: center; /* Centraliza o formulário */
+    align-items: center;
+    margin-top: 20px; /* Espaçamento após as mensagens */
+}
+
+#files {
+    /* Remover position absolute e top para que ele siga o fluxo do #upload */
+    /* top: 25%; foi removido */
+    align-items: center; /* Centraliza os itens dentro de #files */
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 25px;
+}
+
+.file-label {
+    /*display: inline-block; já está no padrão para label, mas pode manter*/
+    text-align: center;
+    height: auto; /* Deixa a altura se ajustar ao padding */
+    font-size: 1em; /* Unidade relativa */
+}
+
+#imagem {
+    display: none; /* Continua escondendo o input de arquivo padrão */
+}
+
+#enviar-imagem {
+    height: auto; /* Deixa a altura se ajustar ao padding */
+    font-size: 1em; /* Unidade relativa */
+}
+
+button:hover {
+    transition: 0.5s;
+    border: 1px solid #00dfc5;
+    background-color: #1d2b3a;
+    border-radius: 5px;
+    outline: none;
+    color: #00dfc5;
+    font-size: 1rem; /* Mantenha a unidade original, ou 1em */
+}
+
+label:hover {
+    transition: 0.5s;
+    border: 1px solid #00dfc5;
+    background-color: #1d2b3a;
+    border-radius: 5px;
+    outline: none;
+    color: #00dfc5;
+}
+
+/* **ATENÇÃO: MUITO IMPORTANTE AQUI** */
+#imagens {
+    /* Remover positioning absoluto para que ele siga o fluxo do documento */
+    /* top: 80%; e left: 42%; foram removidos */
+    display: flex;
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os itens dentro do container #imagens */
+    align-items: flex-start; /* Alinha os itens ao topo do container */
+    gap: 20px; /* Espaçamento entre as imagens */
+    margin-top: 20px; /* Espaço entre o h2 e as imagens */
+    padding: 0 20px; /* Adiciona um padding horizontal para não colar nas bordas */
+}
+
+#imagens > div { /* Cada div que envolve a imagem e os botões */
+    display: flex;
+    flex-direction: column; /* Organiza os itens dentro de cada div em coluna */
+    align-items: center; /* Centraliza o conteúdo (imagem, nome, botões) */
+    background-color: #2a3d4f; /* Um pouco mais claro para cada item */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 220px; /* Largura fixa para cada item da imagem */
+    box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+}
+
+#imagens img {
+    max-width: 100%; /* Garante que a imagem não exceda a largura do seu contêiner pai */
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#imagens strong {
+    white-space: nowrap; /* Evita que o nome da imagem quebre em várias linhas */
+    overflow: hidden; /* Esconde o texto que ultrapassa a largura */
+    text-overflow: ellipsis; /* Adiciona "..." ao final do texto cortado */
+    max-width: 100%; /* Garante que o strong não ultrapasse a largura do pai */
+}
+
+#imagens a {
+    display: block; /* Faz com que o link ocupe toda a largura disponível */
+    width: 100%; /* Permite que o botão dentro do link ocupe 100% */
+    margin-top: 10px; /* Espaço entre o nome e os botões */
+}
+
+#imagens button {
+    width: 100%; /* Faz o botão preencher a largura do link */
+    margin-bottom: 5px; /* Espaço entre os botões */
+}
+
+
+/* Reajuste para o h2 "Imagens já enviadas" */
+h2 {
+    /* Remover position absolute, top e left */
+    /* top: 75%; e left: 41%; foram removidos */
+    margin-top: 40px; /* Espaço para o h2 após o formulário */
+}

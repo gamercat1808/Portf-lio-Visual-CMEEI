@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/rename.css">
+    <title>Renomear Imagem</title>
+</head>
+<body>
+    <h1 id="titulo">Renomear Imagem</h1>
+
+    <p>Imagem atual: <strong>{{ imagem[1].rsplit('.', 1)[0] }}</strong></p>
+
+    <form action="{{ url_for('rename', imagem_id=imagem[0]) }}" method="POST">
+        <div id="input-box">
+            <input type="text" name="novo_nome" required>
+            <span>Insira o novo nome</span>
+        </div>
+        <button type="submit">Renomear</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('index') }}">Voltar</a>
+        <div id="images">
+        <img id="logo" src="/static/src/Logo_CMEEI-removebg-preview.png">
+    </div>
+</body>
+</html>

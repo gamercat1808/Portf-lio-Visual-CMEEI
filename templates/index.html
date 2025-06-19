@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Gerenciador de Imagens</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1 id="titulo">Portfólio Visual CMEEI</h1>
+
+    <!-- Mensagens -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul class="flashed">
+          {% for message in messages %}
+            <li class="flashed">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Formulário de Upload -->
+    <form action="{{ url_for('upload') }}" method="POST" id="upload" enctype="multipart/form-data">
+        <div id="files">
+            <label for="imagem" class="file-label">Selecionar Imagem</label>
+            <input type="file" name="imagem" id="imagem" accept="image/*" required placeholder="Selecione a imagem">
+            <button type="submit" id="enviar-imagem">Enviar Imagem</button>
+        </div>
+    </form>
+
+    
+    <h2>Imagens já enviadas</h2>
+    <div id="imagens">
+        
+    {% for imagem in imagens %}
+        <div >
+            <img src="{{ '/' + imagem[2] }}" alt="{{ imagem[1] }}" width="200"><br>
+            <strong id="nomeImagem">{{ imagem[1].rsplit('.', 1)[0] }}</strong><br>
+
+            <!-- Link para a página rename.html -->
+            <a href="{{ url_for('rename_page', imagem_id=imagem[0]) }}">
+                <button>Renomear</button>
+            </a>
+
+            <!-- Botão para deletar -->
+            <a href="{{ url_for('delete', imagem_id=imagem[0]) }}" onclick="return confirm('Deseja realmente deletar?')">
+                <button>Deletar</button>
+            </a>
+        </div>
+    {% else %}
+        <p>Nenhuma imagem enviada.</p>
+    {% endfor %}
+    </div>
+
+    <div id="images">
+        <img id="logo" src="/static/src/Logo_CMEEI-removebg-preview.png">
+    </div>
+</body>
+</html>
